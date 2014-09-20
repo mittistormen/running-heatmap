@@ -1,4 +1,4 @@
-angular.module('the-map').controller('LabCtrl', function ($scope, $http, LineService, LapService) {
+angular.module('the-map').controller('LabCtrl', function ($scope, $http, LapService, CalculationService) {
   'use strict';
   /*global X2JS */
   var x2js = new X2JS(); 
@@ -12,11 +12,11 @@ angular.module('the-map').controller('LabCtrl', function ($scope, $http, LineSer
   };
 
 
-
-
   var shopMap = function(laps) {
 
     var center = LapService.getCenter(laps);
+
+    var points = LapService.getAllPoints(laps);
 
     $scope.map = {
         center: {
@@ -26,9 +26,9 @@ angular.module('the-map').controller('LabCtrl', function ($scope, $http, LineSer
         zoom: 14,
         laps: laps,
         showTrack: true,
-        distance: LineService.getTotalDistanceAsK(laps),
-        time: LineService.getTotalTimeAsMinutes(laps),
-        averageTempo: LineService.getAverageTempo(laps)
+        distance: CalculationService.getTotalDistanceAsK(points),
+        time: CalculationService.getTotalTimeAsMinutes(points),
+        averageTempo: CalculationService.getAverageTempo(points)
     };
   };
 

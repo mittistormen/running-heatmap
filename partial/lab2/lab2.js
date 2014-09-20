@@ -1,4 +1,4 @@
-angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineService, LapService) {
+angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineService, LapService, CalculationService) {
   'use strict';
 
   /*global X2JS */
@@ -21,8 +21,8 @@ angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineSe
 
       console.log('laps', laps);
 
-      var lines = LineService.getLinesFromLaps(laps);
-
+      var lines = LineService.convertToLines(laps);
+      var points = LapService.getAllPoints(laps);
       var center = LapService.getCenter(laps);
 
       console.log('lines', lines);
@@ -35,9 +35,9 @@ angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineSe
           zoom: 14,
           lines: lines,
           ready: true,
-          distance: LineService.getTotalDistanceAsK(laps),
-          time: LineService.getTotalTimeAsMinutes(laps),
-          averageTempo: LineService.getAverageTempo(laps)
+          distance: CalculationService.getTotalDistanceAsK(points),
+          time: CalculationService.getTotalTimeAsMinutes(points),
+          averageTempo: CalculationService.getAverageTempo(points)
       };
 
 
