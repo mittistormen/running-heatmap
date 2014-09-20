@@ -126,36 +126,50 @@ angular.module('the-map').controller('LabCtrl', function ($scope, $http) {
         var fasterThanTheRest = tempoToNextPoint > averageTempo;
 
         if (lines.length === 0 || lines[lines.length-1].faster !== fasterThanTheRest) {
+          console.log('addNew');
+          if (lines.length > 1 && lines[lines.length-1].points.length < 2) {
+            //get rid of lines with only one point
+
+            //add point to previous one
+            lines[lines.length-2].points.concat(lines[lines.length-1].points);
+            //remove it
+            lines.splice(lines.length-1, 1);
+
+            //add to previous line
+            lines[lines.length-1].points.push(point);
+          }
+          else {
           
-          // if (lines.length > 1 && lines[lines.length-1].points.length < 2) {
-          //   //get rid of lines with only one point
-
-          //   //add point to previous one
-          //   lines[lines.length-2].points.concat(lines[lines.length-1].points);
-          //   //remove it
-          //   lines.splice(lines.length-1, 1);
-
-          //   //add to previous line
-          //   lines[lines.length-1].points.push(point);
-          // }
-          // else {
             //add new line
-            var stroke = fasterThanTheRest ? { color: 'red', weight:1 } : { color: 'blue', weight:1 };
+            if (lines.length > 0) {
+              //close last line
+              lines[lines.length-1].points.push(point);
+            }
+            var stroke = fasterThanTheRest ? { color: 'green', weight:1 } : { color: 'red', weight:1 };
 
             lines.push({points:[point], faster:fasterThanTheRest, stroke:stroke });
-          // }
+          }
         }
         else {
+          console.log('add to last');
+
           //add to last line
           lines[lines.length-1].points.push(point);
         }
+
       }
       else {
+        console.log('add last line');
         lines[lines.length-1].points.push(point);
       }
 
     });
 
+    var pointsInLines = [];
+    pointsInLines.concat.apply(pointsInLines, lines.map(function(line) { return line.points; }));
+
+    console.log('number of points', points.length);
+    console.log('number of points in lines', pointsInLines.length);
 
     return lines;
   };
