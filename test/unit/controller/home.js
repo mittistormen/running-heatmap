@@ -1,4 +1,4 @@
-describe('MyPartialCtrl', function () {
+describe('HomeCtrl', function () {
 
   var scope, ctrl;
 
@@ -6,7 +6,7 @@ describe('MyPartialCtrl', function () {
     module('the-map');
     inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('MyPartialCtrl', {$scope: scope});
+      ctrl = $controller('HomeCtrl', {$scope: scope});
     });
   });
 

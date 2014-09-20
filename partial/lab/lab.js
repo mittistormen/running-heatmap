@@ -15,7 +15,6 @@ angular.module('the-map').controller('LabCtrl', function ($scope, $http, LapServ
   var shopMap = function(laps) {
 
     var center = LapService.getCenter(laps);
-
     var points = LapService.getAllPoints(laps);
 
     $scope.map = {
