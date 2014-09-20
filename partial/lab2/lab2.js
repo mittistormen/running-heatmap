@@ -11,21 +11,16 @@ angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineSe
 
       console.log(data);
 
-
-        var laps = data.gpx.trk.trkseg.map(function(trkseg) {
-          return { points: trkseg.trkpt.map(function(trkpt) {
-            return { latitude: parseFloat(trkpt._lat), longitude: parseFloat(trkpt._lon), timestamp: Date.parse(trkpt.time) };
-            })
-          };
-        });
-
-      console.log('laps', laps);
+      var laps = data.gpx.trk.trkseg.map(function(trkseg) {
+        return { points: trkseg.trkpt.map(function(trkpt) {
+          return { latitude: parseFloat(trkpt._lat), longitude: parseFloat(trkpt._lon), timestamp: Date.parse(trkpt.time) };
+          })
+        };
+      });
 
       var lines = LineService.convertToLines(laps);
       var points = LapService.getAllPoints(laps);
       var center = LapService.getCenter(laps);
-
-      console.log('lines', lines);
 
       $scope.kungsholmenMap = {
           center: {
@@ -42,7 +37,6 @@ angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineSe
 
 
     });
-
   
 
 });
