@@ -14,7 +14,7 @@ angular.module('the-map').config(function ($stateProvider, $urlRouterProvider) {
 	/* Add New Routes Above */
   
   // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/lab");
 
 });
 

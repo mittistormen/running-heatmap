@@ -1,11 +1,14 @@
 <div ng-controller="Lab2Ctrl">
-  Hello lab 2
+  <h2>Lab 2</h2>
+  <p>One runner. Green lines faster than average, red lines slower than avarage.</p>
+  <div ng-if="kungsholmenMap.ready">
+      Distance: {{ kungsholmenMap.distance }} km<br/>
+      Time: {{ kungsholmenMap.time }} minutes<br/>
+      Average tempo: {{ kungsholmenMap.averageTempo }} min/km<br/>
 
-<div class="map-container">
-  <div ng-if="showTrack">
-
-      <google-map center="map.center" zoom="map.zoom">
-        
+      <google-map center="kungsholmenMap.center" zoom="kungsholmenMap.zoom">
+        <polyline ng-repeat="line in kungsholmenMap.lines" path="line.points" stroke="line.stroke">
+        </polyline>
       </google-map>
   </div>
 </div>
