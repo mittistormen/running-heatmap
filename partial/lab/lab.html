@@ -1,0 +1,28 @@
+<div ng-controller="LabCtrl">
+<div class="map-container">
+  <h2>Lab 1</h2>
+  <p>Just a regular map</p>
+  <div ng-if="map.showTrack">
+      Distance: {{ map.distance }} km<br/>
+      Time: {{ map.time }} minutes<br/>
+      Average tempo: {{ map.averageTempo }} min/km<br/>
+
+      <google-map center="map.center" zoom="map.zoom">
+        <polyline ng-repeat="lap in map.laps" path="lap.points" stroke="1">
+        </polyline>
+      </google-map>
+  </div>
+  <h2>Lab 2</h2>
+  <p>One runner. Red ones faster than average, blue ones slower than avarage. Varför diffar linjerna???</p>
+  <div ng-if="kungsholmenMap.ready">
+      Distance: {{ kungsholmenMap.distance }} km<br/>
+      Time: {{ kungsholmenMap.time }} minutes<br/>
+      Average tempo: {{ kungsholmenMap.averageTempo }} min/km<br/>
+
+      <google-map center="kungsholmenMap.center" zoom="kungsholmenMap.zoom">
+        <polyline ng-repeat="line in kungsholmenMap.lines" path="line.points" stroke="line.stroke">
+        </polyline>
+      </google-map>
+  </div>
+</div>
+</div>

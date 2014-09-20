@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="the-map">
+<head>
+  <title></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- App LESS -->
+  <link href="css/app.less" type="text/css" rel="stylesheet/less">
+
+</head>
+<body>
+
+  <script src='/lib/xml2json.js'></script>
+  
+  <!-- Livereload script for development only (stripped during dist build) -->
+  <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
+
+  <!-- JS from Bower components -->
+  <script src="bower_components/less/dist/less-1.5.1.js" data-build="exclude"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/moment/min/moment.min.js"></script>
+
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+  <script src='/bower_components/underscore/underscore-min.js'></script>
+  <script src='/bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+  <!-- Main App JS -->
+  <script src="js/setup.js"></script>
+
+  <!-- Service JS -->
+  <!-- Add New Service JS Above --> 
+
+  <!-- Model JS -->
+  <!-- Add New Model JS Above --> 
+
+  <!-- Directive JS -->
+  <!-- Add New Directive JS Above -->
+
+  <!-- Filter JS -->
+  <!-- Add New Filter JS Above -->
+
+  <!-- Partial JS -->
+  <script src="partial/my-partial/my-partial.js"></script>
+  <script src="partial/lab/lab.js"></script>
+  <script src="partial/lab2/lab2.js"></script>
+  <!-- Add New Partial JS Above -->
+
+  <div ui-view>
+  </div>
+  
+</body>
+</html>
