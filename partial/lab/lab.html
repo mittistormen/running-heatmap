@@ -8,19 +8,7 @@
       Average tempo: {{ map.averageTempo }} min/km<br/>
 
       <google-map center="map.center" zoom="map.zoom">
-        <polyline ng-repeat="lap in map.laps" path="lap.points" stroke="1">
-        </polyline>
-      </google-map>
-  </div>
-  <h2>Lab 2</h2>
-  <p>One runner. Green lines faster than average, red lines slower than avarage.</p>
-  <div ng-if="kungsholmenMap.ready">
-      Distance: {{ kungsholmenMap.distance }} km<br/>
-      Time: {{ kungsholmenMap.time }} minutes<br/>
-      Average tempo: {{ kungsholmenMap.averageTempo }} min/km<br/>
-
-      <google-map center="kungsholmenMap.center" zoom="kungsholmenMap.zoom">
-        <polyline ng-repeat="line in kungsholmenMap.lines" path="line.points" stroke="line.stroke">
+        <polyline path="map.points" stroke="1">
         </polyline>
       </google-map>
   </div>

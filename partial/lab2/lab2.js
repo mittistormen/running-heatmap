@@ -1,42 +1,23 @@
-angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineService, LapService, CalculationService) {
+angular.module('the-map').controller('Lab2Ctrl', function ($scope, $http, LineService, GpxReader, CalculationService) {
   'use strict';
 
-  /*global X2JS */
-  var x2js = new X2JS(); 
+  GpxReader.getTrackFromFile('http://localhost:9001/test-data/kungsholmen_runt_2012/2012-05-05 11-30-14.gpx', function(track) {
 
-  $http.get('http://localhost:9001/test-data/kungsholmen_runt_2012/2012-05-05 11-30-14.gpx')
-    .then(function(response) {
-      
-      var data = x2js.xml_str2json(response.data);
+    var lines = LineService.convertToLines(track.points);
 
-      console.log(data);
+    $scope.kungsholmenMap = {
+        center: {
+            latitude: track.center.latitude,
+            longitude: track.center.longitude
+        },
+        zoom: 14,
+        lines: lines,
+        ready: true,
+        distance: CalculationService.getTotalDistanceAsK(track.points),
+        time: CalculationService.getTotalTimeAsMinutes(track.points),
+        averageTempo: CalculationService.getAverageTempo(track.points)
+    };
 
-      var laps = data.gpx.trk.trkseg.map(function(trkseg) {
-        return { points: trkseg.trkpt.map(function(trkpt) {
-          return { latitude: parseFloat(trkpt._lat), longitude: parseFloat(trkpt._lon), timestamp: Date.parse(trkpt.time) };
-          })
-        };
-      });
-
-      var lines = LineService.convertToLines(laps);
-      var points = LapService.getAllPoints(laps);
-      var center = LapService.getCenter(laps);
-
-      $scope.kungsholmenMap = {
-          center: {
-              latitude: center.latitude,
-              longitude: center.longitude
-          },
-          zoom: 14,
-          lines: lines,
-          ready: true,
-          distance: CalculationService.getTotalDistanceAsK(points),
-          time: CalculationService.getTotalTimeAsMinutes(points),
-          averageTempo: CalculationService.getAverageTempo(points)
-      };
-
-
-    });
-  
+  });
 
 });

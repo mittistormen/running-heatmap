@@ -1,4 +1,4 @@
-angular.module('the-map').service('LineService', function (CalculationService, LapService) {
+angular.module('the-map').service('LineService', function (CalculationService) {
   'use strict';
 
 
@@ -11,11 +11,9 @@ angular.module('the-map').service('LineService', function (CalculationService, L
  * @param  {Array} laps [description]
  * @return {Array}      [description]
  */
-  var convertToLines = function(laps) {
+  var convertToLines = function(points) {
 
     var lines = [];
-
-    var points = LapService.getAllPoints(laps);
 
     var averageTempo = CalculationService.getAverageTempo(points);
 
