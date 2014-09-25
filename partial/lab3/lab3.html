@@ -1,11 +1,13 @@
 <div ng-controller="Lab3Ctrl">
   <h2>Lab 3</h2>
   <p>A track created out of multiple similar runs.</p>
-  <div ng-if="kungsholmenMap.ready">
-      Distance: {{ kungsholmenMap.distance }} km<br/>
+  <div ng-if="map.showTrack">
+      Distance: {{ map.distance }} km<br/>
+      Time: {{ map.time }} minutes<br/>
+      Average tempo: {{ map.averageTempo }} min/km<br/>
 
-      <google-map center="kungsholmenMap.center" zoom="kungsholmenMap.zoom">
-        <polyline ng-repeat="line in kungsholmenMap.lines" path="line.points" stroke="line.stroke">
+      <google-map center="map.center" zoom="map.zoom">
+        <polyline path="map.points" stroke="1">
         </polyline>
       </google-map>
   </div>
