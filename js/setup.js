@@ -16,6 +16,7 @@ angular.module('the-map').config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'partial/lab2/lab2.html'
   });
 	$stateProvider.state('lab3', {    url: '/lab3',    templateUrl: 'partial/lab3/lab3.html'  });
+	$stateProvider.state('lab4', {    url: 'lab4',    templateUrl: 'partial/lab4/lab4.html'  });
 	/* Add New Routes Above */
   
   // For any unmatched url, redirect to /

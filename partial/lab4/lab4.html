@@ -1,0 +1,15 @@
+<div ng-controller="Lab4Ctrl">
+  <h2>Lab 4</h2>
+  <p>XXX.</p>
+  <div ng-if="map.showTrack">
+      Distance: {{ map.distance }} km<br/>
+      Time: {{ map.time }} minutes<br/>
+      Average tempo: {{ map.averageTempo }} min/km<br/>
+
+      <google-map center="map.center" zoom="map.zoom">
+        <polyline path="map.points" stroke="1">
+        </polyline>
+      </google-map>
+  </div>
+</div>
+</div>
